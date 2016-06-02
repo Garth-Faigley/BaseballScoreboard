@@ -42,8 +42,8 @@
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#ccff00" FontWeight="Bold" 
                 		FontSize="480" Margin="0" Padding="0" Text="{Binding HomeScore}" FontFamily="Franklin Gothic Demi"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Content="-" Width="25" Click="IncrementHome" x:Name="HomeDecrement"></Button>
-                    <Button Content="+" Width="25" Click="IncrementHome" x:Name="HomeIncrement"></Button>
+                    <Button Content="-" Width="25" Click="HomeScoreButton_Click" x:Name="HomeDecrement"></Button>
+                    <Button Content="+" Width="25" Click="HomeScoreButton_Click" x:Name="HomeIncrement"></Button>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -58,8 +58,8 @@
                 		Padding="0" FontSize="192" Text="{Binding AtBat}" FontFamily="Franklin Gothic Demi"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Content="-" Width="25" Click="IncrementInning" x:Name="InningDecrement"></Button>
-                    <Button Content="+" Width="25" Click="IncrementInning" x:Name="InningIncrement"></Button>
+                    <Button Content="-" Width="25" Click="InningButton_Click" x:Name="InningDecrement"></Button>
+                    <Button Content="+" Width="25" Click="InningButton_Click" x:Name="InningIncrement"></Button>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -70,8 +70,8 @@
                 <TextBlock Foreground="#ccff00" FontWeight="Bold" HorizontalAlignment="Center" Margin="0"
                 		Padding="0" FontSize="192" Text="{Binding CurrentOut}" FontFamily="Franklin Gothic Demi"></TextBlock>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Content="-" Width="25" Click="IncrementOut" x:Name="OutDecrement"></Button>
-                    <Button Content="+" Width="25" Click="IncrementOut" x:Name="OutIncrement"></Button>
+                    <Button Content="-" Width="25" Click="OutButton_Click" x:Name="OutDecrement"></Button>
+                    <Button Content="+" Width="25" Click="OutButton_Click" x:Name="OutIncrement"></Button>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -81,8 +81,8 @@
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#ccff00" FontWeight="Bold" 
                 		FontSize="480" Margin="0" Padding="0" Text="{Binding AwayScore}" FontFamily="Franklin Gothic Demi"></TextBlock>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Content="-" Width="25" Click="IncrementAway" x:Name="AwayDecrement"></Button>
-                    <Button Content="+" Width="25" Click="IncrementAway" x:Name="AwayIncrement"></Button>
+                    <Button Content="-" Width="25" Click="AwayScoreButton_Click" x:Name="AwayDecrement"></Button>
+                    <Button Content="+" Width="25" Click="AwayScoreButton_Click" x:Name="AwayIncrement"></Button>
                 </StackPanel>
             </StackPanel>
         </Border>

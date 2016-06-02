@@ -18,10 +18,71 @@ namespace BaseballScoreboard
             this.DataContext = scoreboardData;
         }
 
-        private void IncrementOut(object sender, RoutedEventArgs e)
+        #region " Mouse Button Click Handlers "
+        private void OutButton_Click(object sender, RoutedEventArgs e)
         {
             Button sendingButton = (Button)sender;
             if (sendingButton.Name == "OutIncrement")
+                OutChange(true);
+            else
+                OutChange(false);
+        }
+
+        private void InningButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button sendingButton = (Button)sender;
+            if (sendingButton.Name == "InningIncrement")
+                InningChange(true);
+            else
+                InningChange(false);
+        }
+
+        private void HomeScoreButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button sendingButton = (Button)sender;
+            if (sendingButton.Name == "HomeIncrement")
+                HomeScoreChange(true);
+            else
+                HomeScoreChange(false);
+        }
+
+        private void AwayScoreButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button sendingButton = (Button)sender;
+            if (sendingButton.Name == "AwayIncrement")
+                AwayScoreChange(true);
+            else
+                AwayScoreChange(false);
+        }
+        #endregion
+
+        #region " KeyDown and Presenter Button Click Handlers "
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.I || e.Key == Key.Next)
+            {
+                InningChange(true);
+            }
+
+            if (e.Key == Key.A || e.Key == Key.OemPeriod )
+            {
+                AwayScoreChange(true);
+            }
+            if (e.Key == Key.H || e.Key == Key.F5)
+            {
+                HomeScoreChange(true);
+            }
+            if (e.Key == Key.O || e.Key == Key.PageUp)
+            {
+                OutChange(true);
+            }
+        }
+        #endregion
+
+        #region " Increment / Decrement numbers "
+        private void OutChange(bool isIncrease)
+        {
+            if (isIncrease)
             {
                 if (scoreboardData.CurrentOut < 3)
                 {
@@ -41,11 +102,9 @@ namespace BaseballScoreboard
             }
         }
 
-
-        private void IncrementInning(object sender, RoutedEventArgs e)
+        private void InningChange(bool isIncrease)
         {
-            Button sendingButton = (Button)sender;
-            if (sendingButton.Name == "InningIncrement")
+            if (isIncrease)
             {
                 if (scoreboardData.AtBat == "^")
                 {
@@ -59,8 +118,6 @@ namespace BaseballScoreboard
             }
             else
             {
-                //if (scoreboardData.CurrentInning > 1 && scoreboardData.AtBat != "^")
-                //{
                 if (scoreboardData.AtBat == "^")
                 {
                     if (scoreboardData.CurrentInning > 1)
@@ -73,14 +130,12 @@ namespace BaseballScoreboard
                 {
                     scoreboardData.AtBat = "^";
                 }
-                //}
             }
         }
 
-        private void IncrementHome(object sender, RoutedEventArgs e)
+        private void HomeScoreChange(bool isIncrease)
         {
-            Button sendingButton = (Button)sender;
-            if (sendingButton.Name == "HomeIncrement")
+            if (isIncrease)
             {
                 scoreboardData.HomeScore += 1;
             }
@@ -93,10 +148,9 @@ namespace BaseballScoreboard
             }
         }
 
-        private void IncrementAway(object sender, RoutedEventArgs e)
+        private void AwayScoreChange(bool isIncrease)
         {
-            Button sendingButton = (Button)sender;
-            if (sendingButton.Name == "AwayIncrement")
+            if (isIncrease)
             {
                 scoreboardData.AwayScore += 1;
             }
@@ -108,40 +162,7 @@ namespace BaseballScoreboard
                 }
             }
         }
+#endregion
 
-        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == Key.I)
-            {
-                if (scoreboardData.AtBat == "^")
-                {
-                    scoreboardData.AtBat = "v";
-                }
-                else
-                {
-                    scoreboardData.AtBat = "^";
-                    scoreboardData.CurrentInning += 1;
-                }
-            }
-            if (e.Key == Key.A)
-            {
-                scoreboardData.AwayScore += 1;
-            }
-            if (e.Key == Key.H)
-            {
-                scoreboardData.HomeScore += 1;
-            }
-            if (e.Key == Key.O)
-            {
-                if (scoreboardData.CurrentOut < 3)
-                {
-                    scoreboardData.CurrentOut += 1;
-                }
-                else
-                {
-                    scoreboardData.CurrentOut = 0;
-                }
-            }
-        }
     }
 }
