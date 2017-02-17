@@ -6,26 +6,6 @@
         ResizeMode="CanResizeWithGrip"
         WindowState="Maximized" 
         KeyDown="Window_KeyDown">
-    <Window.Resources>
-        <!--<Style x:Key="InningOut" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-            <Setter Property="FontSize" Value="72"></Setter>
-            <Setter Property="FontWeight" Value="Bold"></Setter>
-        </Style>
-        <Style x:Key="InningOutNumber" TargetType="TextBlock" BasedOn="{StaticResource InningOut}">
-            <Setter Property="FontSize" Value="128"></Setter>
-        </Style>
-        <Style x:Key="Score" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-            <Setter Property="FontSize" Value="192"></Setter>
-            <Setter Property="FontWeight" Value="Bold"></Setter>
-        </Style>
-        <Style x:Key="ScoreNumber" TargetType="TextBlock" BasedOn="{StaticResource Score}">
-            <Setter Property="FontSize" Value="320"></Setter>
-        </Style>-->
-    </Window.Resources>
     <Grid Background="Black">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -37,54 +17,88 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Border Grid.RowSpan="2" BorderThickness="1" BorderBrush="#ccff00">
-            <StackPanel>
-                <TextBlock HorizontalAlignment="Center" Foreground="#ccff00" FontWeight="Bold" FontSize="156">HOME</TextBlock>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#ccff00" FontWeight="Bold" 
-                		FontSize="480" Margin="0" Padding="0" Text="{Binding HomeScore}" FontFamily="Franklin Gothic Demi"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Viewbox>
+                    <TextBlock Foreground="#ccff00" FontWeight="Bold" Margin="1">HOME</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Row="1">
+                    <TextBlock Foreground="#ccff00" Text="{Binding HomeScore}" 
+                               FontWeight="Bold" FontFamily="Franklin Gothic Demi" />
+                </Viewbox>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
                     <Button Content="-" Width="25" Click="HomeScoreButton_Click" x:Name="HomeDecrement"></Button>
                     <Button Content="+" Width="25" Click="HomeScoreButton_Click" x:Name="HomeIncrement"></Button>
                 </StackPanel>
-            </StackPanel>
+            </Grid>
         </Border>
         <Border BorderBrush="#ccff00" BorderThickness="1" Grid.Column="1">
-            <StackPanel VerticalAlignment="Center">
-                <TextBlock Foreground="#ccff00" FontWeight="Bold" HorizontalAlignment="Center" Margin="0"
-                		Padding="0" FontSize="64">INNING</TextBlock>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBlock Foreground="#ccff00" FontWeight="Bold" HorizontalAlignment="Center" Margin="0"
-                		Padding="0" FontSize="192" Text="{Binding CurrentInning}" FontFamily="Franklin Gothic Demi"></TextBlock>
-                    <TextBlock Foreground="#ccff00" FontWeight="Bold" HorizontalAlignment="Center" Margin="0"
-                		Padding="0" FontSize="192" Text="{Binding AtBat}" FontFamily="Franklin Gothic Demi"></TextBlock>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Viewbox>
+                    <TextBlock Foreground="#ccff00" FontWeight="Bold" Margin="2">INNING</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Row="1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Foreground="#ccff00" FontWeight="Bold" 
+                		           Text="{Binding CurrentInning}" FontFamily="Franklin Gothic Demi"></TextBlock>
+                        <TextBlock Foreground="#ccff00" FontWeight="Bold" 
+                		           Text="{Binding AtBat}" FontFamily="Franklin Gothic Demi"></TextBlock>
+                    </StackPanel>
+                </Viewbox>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
                     <Button Content="-" Width="25" Click="InningButton_Click" x:Name="InningDecrement"></Button>
                     <Button Content="+" Width="25" Click="InningButton_Click" x:Name="InningIncrement"></Button>
                 </StackPanel>
-            </StackPanel>
+            </Grid>
         </Border>
         <Border BorderBrush="#ccff00" BorderThickness="1" Grid.Column="1" Grid.Row="1">
-            <StackPanel VerticalAlignment="Center">
-                <TextBlock Foreground="#ccff00" FontWeight="Bold" HorizontalAlignment="Center"
-                		Margin="0" Padding="0" FontSize="96">OUT</TextBlock>
-                <TextBlock Foreground="#ccff00" FontWeight="Bold" HorizontalAlignment="Center" Margin="0"
-                		Padding="0" FontSize="192" Text="{Binding CurrentOut}" FontFamily="Franklin Gothic Demi"></TextBlock>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Viewbox StretchDirection="DownOnly">
+                    <TextBlock Foreground="#ccff00" FontWeight="Bold" FontSize="72">OUT</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Row="1">
+                    <TextBlock Foreground="#ccff00" FontWeight="Bold" 
+                		       Text="{Binding CurrentOut}" FontFamily="Franklin Gothic Demi"></TextBlock>
+                </Viewbox>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
                     <Button Content="-" Width="25" Click="OutButton_Click" x:Name="OutDecrement"></Button>
                     <Button Content="+" Width="25" Click="OutButton_Click" x:Name="OutIncrement"></Button>
                 </StackPanel>
-            </StackPanel>
+            </Grid>
         </Border>
         <Border BorderBrush="#ccff00" BorderThickness="1" Grid.Column="2" Grid.RowSpan="2">
-            <StackPanel VerticalAlignment="Center">
-                <TextBlock HorizontalAlignment="Center" Foreground="#ccff00" FontWeight="Bold" FontSize="156">AWAY</TextBlock>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#ccff00" FontWeight="Bold" 
-                		FontSize="480" Margin="0" Padding="0" Text="{Binding AwayScore}" FontFamily="Franklin Gothic Demi"></TextBlock>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Viewbox>
+                    <TextBlock Foreground="#ccff00" FontWeight="Bold" Margin="1">AWAY</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Row="1">
+                    <TextBlock Foreground="#ccff00" FontWeight="Bold" 
+                		       Text="{Binding AwayScore}" FontFamily="Franklin Gothic Demi"></TextBlock>
+                </Viewbox>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
                     <Button Content="-" Width="25" Click="AwayScoreButton_Click" x:Name="AwayDecrement"></Button>
                     <Button Content="+" Width="25" Click="AwayScoreButton_Click" x:Name="AwayIncrement"></Button>
                 </StackPanel>
-            </StackPanel>
+            </Grid>
         </Border>
     </Grid>
 </Window>
